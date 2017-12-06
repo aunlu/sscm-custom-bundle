@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>sscm-custom-bundle</artifactId>
+        <groupId>com.ericsson.sscm.esb</groupId>
+        <version>4.1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>sscm-korek-test-outbound</artifactId>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+
+        <plugins>
+            <!-- to generate the MANIFEST-FILE of the bundle -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Export-Package>
+                            !${project.groupId}*.korek.impl*;${project.groupId}.outbound.custom.korek;;provide:=true;version=${project.version}
+                        </Export-Package>
+                        <Import-Package>
+                            !*,
+                            org.osgi.framework,
+                            org.slf4j,
+                            com.ericsson.sscm.esb.model.data,
+                            com.ericsson.sscm.esb.exceptions,
+                            com.ericsson.sscm.esb.outbound,
+                            com.ericsson.sscm.esb.model.annotations,
+                            com.ericsson.sscm.esb.common.util,
+                            com.ericsson.enk.util,
+                            org.osgi.service.blueprint;version="[1.0.0,2.0.0)",
+                            javax.activation;version=1.1,
+                            com.ericsson.sscm.esb.outbound.custom.korek.jdbc.proxy
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+</project>
