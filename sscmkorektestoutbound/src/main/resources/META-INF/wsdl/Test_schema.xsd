@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ws.test.ericsson.com"
+		   xmlns:xmime="http://www.w3.org/2005/05/xmlmime" 
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		   elementFormDefault="qualified" 
+		   targetNamespace="http://ws.test.ericsson.com" version="1.0">
+		   
+	<xs:import namespace="http://www.w3.org/2005/05/xmlmime"/>
+	
+	<xs:element name="setSubscriberData" type="tns:setSubscriberData"/>
+	<xs:element name="setSubscriberDataResponse" type="tns:setSubscriberDataResponse"/>
+	<xs:element name="readSubscriberData" type="tns:readSubscriberData"/>
+	<xs:element name="readSubscriberDataResponse" type="tns:readSubscriberDataResponse"/>
+
+	<xs:complexType name="setSubscriberData">
+		<xs:sequence>
+			<xs:element name="msisdn" type="xs:string" nillable="false"/>
+			<xs:element name="transactionId" type="xs:string" nillable="false"/>
+			<xs:element name="param1" type="xs:string" nillable="false"/>
+			<xs:element name="param2" type="xs:integer" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="setSubscriberDataResponse">
+		<xs:sequence>
+			<xs:element name="TestResponse" type="tns:testResponse" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="readSubscriberData">
+		<xs:sequence>
+			<xs:element name="msisdn" type="xs:string" nillable="false"/>
+			<xs:element name="transactionId" type="xs:string" nillable="false"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="readSubscriberDataResponse">
+		<xs:complexContent>
+			<xs:extension base="tns:testResponse">
+				<xs:sequence>
+					<xs:element name="testReturn" type="tns:testReturn" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="testReturn">
+		<xs:sequence>
+			<xs:element name="esdpOfferId" type="xs:string"/>
+			<xs:element name="campaignId" type="xs:string"/>
+			<xs:element name="errorCode" type="xs:long"/>
+			<xs:element name="retryCount" type="xs:int"/>
+			<xs:element name="attributes" type="tns:requestAttribute" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="requestType" type="tns:request-type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="requestAttribute">
+		<xs:sequence>
+			<xs:element name="attributeId" type="xs:long"/>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+			<xs:element name="actionType" type="xs:short"/>
+			<xs:element name="previousValue" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="testResponse">
+		<xs:sequence>
+			<xs:element name="responseCode" nillable="true" type="xs:int"/>
+			<xs:element name="description" nillable="true" type="xs:string"/>
+			<xs:element name="status" nillable="true" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="request-type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1" />
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="TestWsService" targetNamespace="http://ws.test.ericsson.com"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.test.ericsson.com"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://ws.test.ericsson.com" schemaLocation="Test_schema.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="setSubscriberData">
+        <wsdl:part name="parameters" element="tns:setSubscriberData">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="setSubscriberDataResponse">
+        <wsdl:part name="parameters" element="tns:setSubscriberDataResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="readSubscriberData">
+        <wsdl:part name="parameters" element="tns:readSubscriberData">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="readSubscriberDataResponse">
+        <wsdl:part name="parameters" element="tns:readSubscriberDataResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="test-ws">
+        <wsdl:operation name="setSubscriberData">
+            <wsdl:input name="setSubscriberData" message="tns:setSubscriberData">
+            </wsdl:input>
+            <wsdl:output name="setSubscriberDataResponse" message="tns:setSubscriberDataResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="readSubscriberData">
+            <wsdl:input name="readSubscriberData" message="tns:readSubscriberData">
+            </wsdl:input>
+            <wsdl:output name="readSubscriberDataResponse" message="tns:readSubscriberDataResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="testWsServiceSoapBinding" type="tns:test-ws">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="setSubscriberData">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="readSubscriberData">
+            <soap:operation soapAction=""/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TestWsService">
+        <wsdl:port name="test-wsPort" binding="tns:testWsServiceSoapBinding">
+            <soap:address location="http://localhost:19095/test-wsPort"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

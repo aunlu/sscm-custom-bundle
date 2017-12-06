@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:jaxws="http://cxf.apache.org/blueprint/jaxws"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0">
+
+	<cm:property-placeholder persistent-id="com.ericsson.sscm.esb.korek.test" update-strategy="none">
+		<cm:default-properties>
+			<cm:property name="frpWsUri" value="http://localhost:9095/frp-wsPort" />
+		</cm:default-properties>
+	</cm:property-placeholder>
+
+	<bean id="sscmCustomKorekFrpOutboundServiceImpl"
+		class="com.ericsson.sscm.esb.outbound.custom.korek.impl.CustomKorekFrpOutboundServiceImpl">
+		<property name="frpServiceProxy" ref="frpWs_endpoint" />
+	</bean>
+	
+	<service ref="sscmCustomKorekFrpOutboundServiceImpl" interface="com.ericsson.sscm.esb.outbound.SscmOutboundService" />
+
+	<bean id="loggingInInterceptor" class="com.ericsson.sscm.esb.common.util.LoggingInInterceptor"/>
+	<bean id="loggingOutInterceptor" class="com.ericsson.sscm.esb.common.util.LoggingOutInterceptor"/>
+
+	<jaxws:client id="frpWs_endpoint" address="${frpWsUri}"
+				  serviceClass="com.ericsson.frp.ws.FrpWs">
+		<jaxws:inInterceptors>
+			<ref component-id="loggingInInterceptor"/>
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref component-id="loggingOutInterceptor"/>
+		</jaxws:outInterceptors>
+	</jaxws:client>
+
+</blueprint>
