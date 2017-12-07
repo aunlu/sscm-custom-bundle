@@ -5,22 +5,22 @@
 
 	<cm:property-placeholder persistent-id="com.ericsson.sscm.esb.korek.test" update-strategy="none">
 		<cm:default-properties>
-			<cm:property name="frpWsUri" value="http://localhost:9095/frp-wsPort" />
+			<cm:property name="testWsUri" value="http://localhost:19095/test-wsPort" />
 		</cm:default-properties>
 	</cm:property-placeholder>
 
-	<bean id="sscmCustomKorekFrpOutboundServiceImpl"
-		class="com.ericsson.sscm.esb.outbound.custom.korek.impl.CustomKorekFrpOutboundServiceImpl">
-		<property name="frpServiceProxy" ref="frpWs_endpoint" />
+	<bean id="sscmCustomKorekTestOutboundServiceImpl"
+		class="com.ericsson.sscm.esb.custom.outbound.impl.CustomKorekTestOutboundServiceImpl">
+		<property name="testServiceProxy" ref="testWs_endpoint" />
 	</bean>
 	
-	<service ref="sscmCustomKorekFrpOutboundServiceImpl" interface="com.ericsson.sscm.esb.outbound.SscmOutboundService" />
+	<service ref="sscmCustomKorekTestOutboundServiceImpl" interface="com.ericsson.sscm.esb.outbound.SscmOutboundService" />
 
 	<bean id="loggingInInterceptor" class="com.ericsson.sscm.esb.common.util.LoggingInInterceptor"/>
 	<bean id="loggingOutInterceptor" class="com.ericsson.sscm.esb.common.util.LoggingOutInterceptor"/>
 
-	<jaxws:client id="frpWs_endpoint" address="${frpWsUri}"
-				  serviceClass="com.ericsson.frp.ws.FrpWs">
+	<jaxws:client id="testWs_endpoint" address="${frpWsUri}"
+				  serviceClass="com.ericsson.test.ws.TestWs">
 		<jaxws:inInterceptors>
 			<ref component-id="loggingInInterceptor"/>
 		</jaxws:inInterceptors>

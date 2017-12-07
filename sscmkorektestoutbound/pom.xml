@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sscm-korek-test-outbound</artifactId>
+    <packaging>bundle</packaging>
 
     <build>
         <defaultGoal>install</defaultGoal>
@@ -24,21 +25,10 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>
-                            !${project.groupId}*.korek.impl*;${project.groupId}.outbound.custom.korek;;provide:=true;version=${project.version}
+                            !${project.groupId}*.impl*;${project.groupId}.custom.outbound;provide:=true;version=${project.version}
                         </Export-Package>
                         <Import-Package>
-                            !*,
-                            org.osgi.framework,
-                            org.slf4j,
-                            com.ericsson.sscm.esb.model.data,
-                            com.ericsson.sscm.esb.exceptions,
-                            com.ericsson.sscm.esb.outbound,
-                            com.ericsson.sscm.esb.model.annotations,
-                            com.ericsson.sscm.esb.common.util,
-                            com.ericsson.enk.util,
-                            org.osgi.service.blueprint;version="[1.0.0,2.0.0)",
-                            javax.activation;version=1.1,
-                            com.ericsson.sscm.esb.outbound.custom.korek.jdbc.proxy
+                            *
                         </Import-Package>
                     </instructions>
                 </configuration>
@@ -66,6 +56,25 @@
                         <goals>
                             <goal>wsdl2java</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/target/generated/src/main/java</source>
+                            </sources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

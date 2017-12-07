@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<exceptionMapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:noNamespaceSchemaLocation="error-config.xsd">
+
+
+    <category name="KorekCellIdOutboundService" fallbackException="config-error">
+        <throwable throwableName="system-error"
+                   className="com.ericsson.sscm.esb.exceptions.SystemException"
+                   blocking="true" retryCount="5" alarmCode="11101"/>
+        <throwable throwableName="system-error-noalarm"
+                   className="com.ericsson.sscm.esb.exceptions.SystemException"
+                   blocking="true" retryCount="100" />
+        <throwable throwableName="business-error"
+                   className="com.ericsson.sscm.esb.exceptions.BusinessException"
+                   blocking="true" retryCount="5"/>
+        <throwable throwableName="config-error"
+                   className="com.ericsson.sscm.esb.exceptions.ConfigurationException"
+                   retryCount="5"/>
+        <throwable throwableName="ignore-error"
+                   className="com.ericsson.sscm.esb.exceptions.IgnoreError" blocking="true"
+                   retryCount="5"/>
+
+
+        <errorCodeMapping>
+            <errorCategory target="system-error-noalarm">
+                <errorCode code="3" description="CellID update in progress"/>
+            </errorCategory>
+            <errorCategory target="ignore-error">
+                <errorCode code="2" description="Cell ID information not available"/>
+            </errorCategory>
+            <errorCategory target="system-error">
+                <errorCode code="100" description="CellID internal error"/>
+            </errorCategory>
+            <errorCategory target="ignore-error">
+                <errorCode code="4" description="Cell ID information not available"/>
+            </errorCategory>
+            <errorCategory target="ignore-error">
+                <errorCode code="5" description="Cell ID information not available"/>
+            </errorCategory>
+            <errorCategory target="ignore-error">
+                <errorCode code="1" description="Cell ID is not allowed"/>
+            </errorCategory>
+        </errorCodeMapping>
+
+        <exceptionMapping>
+            <errorCategory target="system-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.SystemException"
+                           description="System exception" wrapped="false"/>
+                <exception class="java.rmi.NoSuchObjectException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.lang.ClassCastException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.rmi.RemoteException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.rmi.NotBoundException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.net.MalformedURLException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.net.UnknownHostException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.rmi.MarshallException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.rmi.ConnectException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.net.ConnectException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.io.IOException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="org.apache.cxf.binding.soap.SoapFault"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.stream.XMLStreamException"
+                           description="connection exception" wrapped="true"/>
+                <exception
+                        class="org.apache.cxf.service.factory.ServiceConstructionException"
+                        description="connection exception" wrapped="true"/>
+                <exception class="javax.wsdl.WSDLException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="javax.xml.ws.soap.SOAPFaultException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.ws.WebServiceException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.bind.MarshalException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.net.SocketTimeoutException"
+                           description="Socket Timeout Exception" wrapped="true"/>
+                <exception class="java.net.SocketException" description="Socket Exception" wrapped="true"/>
+            </errorCategory>
+            <errorCategory target="business-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.BusinessException"
+                           description="Business exception" wrapped="false"/>
+            </errorCategory>
+        </exceptionMapping>
+    </category>
+    
+    <category name="KorekAtiService" fallbackException="config-error">
+        <throwable throwableName="system-error"
+                   className="com.ericsson.sscm.esb.exceptions.SystemException"
+                   blocking="true" retryCount="5" alarmCode="11101"/>
+        <throwable throwableName="system-error-noalarm"
+                   className="com.ericsson.sscm.esb.exceptions.SystemException"
+                   blocking="true" retryCount="100" />
+        <throwable throwableName="business-error"
+                   className="com.ericsson.sscm.esb.exceptions.BusinessException"
+                   blocking="true" retryCount="5"/>
+        <throwable throwableName="config-error"
+                   className="com.ericsson.sscm.esb.exceptions.ConfigurationException"
+                   retryCount="5"/>
+        <throwable throwableName="ignore-error"
+                   className="com.ericsson.sscm.esb.exceptions.IgnoreError" blocking="true"
+                   retryCount="5"/>
+
+
+        <errorCodeMapping>
+        	<errorCategory target="ignore-error">
+                <errorCode code="18004" description="Malformed data for ATI check"/>
+            </errorCategory>
+        	<errorCategory target="ignore-error">
+                <errorCode code="18003" description="Irrelevant call for ATI check"/>
+            </errorCategory>
+        	<errorCategory target="ignore-error">
+                <errorCode code="18002" description="No data for ATI check"/>
+            </errorCategory>
+            <errorCategory target="ignore-error">
+                <errorCode code="18001" description="A match and a counter-match for ATI check"/>
+            </errorCategory>
+            <errorCategory target="ignore-error">
+                <errorCode code="18000" description="No match for ATI check"/>
+            </errorCategory>
+        </errorCodeMapping>
+
+        <exceptionMapping>
+            <errorCategory target="system-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.SystemException"
+                           description="System exception" wrapped="false"/>
+                <exception class="java.rmi.NoSuchObjectException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.lang.ClassCastException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.rmi.RemoteException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.rmi.NotBoundException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.net.MalformedURLException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.net.UnknownHostException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.rmi.MarshallException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.rmi.ConnectException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.net.ConnectException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.io.IOException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="org.apache.cxf.binding.soap.SoapFault"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.stream.XMLStreamException"
+                           description="connection exception" wrapped="true"/>
+                <exception
+                        class="org.apache.cxf.service.factory.ServiceConstructionException"
+                        description="connection exception" wrapped="true"/>
+                <exception class="javax.wsdl.WSDLException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="javax.xml.ws.soap.SOAPFaultException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.ws.WebServiceException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.bind.MarshalException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.net.SocketTimeoutException"
+                           description="Socket Timeout Exception" wrapped="true"/>
+                <exception class="java.net.SocketException" description="Socket Exception" wrapped="true"/>
+            </errorCategory>
+            <errorCategory target="business-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.BusinessException"
+                           description="Business exception" wrapped="false"/>
+            </errorCategory>
+        </exceptionMapping>
+    </category>
+
+    <category name="CustomKorekFrpOutboundService" fallbackException="ignore-error">
+        <throwable throwableName="system-error"
+                   className="com.ericsson.sscm.esb.exceptions.SystemException"
+                   blocking="true" retryCount="5" />
+        <throwable throwableName="business-error"
+                   className="com.ericsson.sscm.esb.exceptions.BusinessException"
+                   blocking="true" retryCount="5"/>
+        <throwable throwableName="config-error"
+                   className="com.ericsson.sscm.esb.exceptions.ConfigurationException"
+                   retryCount="5"/>
+        <throwable throwableName="ignore-error"
+                   className="com.ericsson.sscm.esb.exceptions.IgnoreError" blocking="true"
+                   retryCount="5"/>
+
+
+        <errorCodeMapping>
+            <errorCategory target="ignore-error">
+                <errorCode code="1" description="FRP Ignore error"/>
+            </errorCategory>
+        </errorCodeMapping>
+
+        <exceptionMapping>
+            <errorCategory target="ignore-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.SystemException"
+                           description="System exception" wrapped="false"/>
+                <exception class="java.rmi.NoSuchObjectException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.lang.ClassCastException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.rmi.RemoteException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.rmi.NotBoundException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.net.MalformedURLException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.net.UnknownHostException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.rmi.MarshallException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.rmi.ConnectException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.net.ConnectException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.io.IOException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="org.apache.cxf.binding.soap.SoapFault"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.stream.XMLStreamException"
+                           description="connection exception" wrapped="true"/>
+                <exception
+                        class="org.apache.cxf.service.factory.ServiceConstructionException"
+                        description="connection exception" wrapped="true"/>
+                <exception class="javax.wsdl.WSDLException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="javax.xml.ws.soap.SOAPFaultException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.ws.WebServiceException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.bind.MarshalException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.net.SocketTimeoutException"
+                           description="Socket Timeout Exception" wrapped="true"/>
+                <exception class="java.net.SocketException" description="Socket Exception" wrapped="true"/>
+            </errorCategory>
+        </exceptionMapping>
+    </category>
+
+    <category name="CustomKorekOutboundService" fallbackException="business-error">
+        <throwable throwableName="system-error"
+                   className="com.ericsson.sscm.esb.exceptions.SystemException"
+                   blocking="true" retryCount="100" alarmCode="11101" />
+        <throwable throwableName="business-error"
+                   className="com.ericsson.sscm.esb.exceptions.BusinessException"
+                   blocking="true" retryCount="100" />
+        <throwable throwableName="config-error"
+                   className="com.ericsson.sscm.esb.exceptions.ConfigurationException"
+                   blocking="true" retryCount="100" />
+        <throwable throwableName="internal-error"
+                   className="com.ericsson.sscm.esb.exceptions.InternalException"
+                   blocking="true" retryCount="100" />
+        <throwable throwableName="ignore-error"
+                   className="com.ericsson.sscm.esb.exceptions.IgnoreError" />
+
+        <errorCodeMapping>
+            <errorCategory target="ignore-error">
+                <errorCode code="4020336" description="There are no applicable attribute modifications" />
+            </errorCategory>
+        </errorCodeMapping>
+
+        <exceptionMapping>
+            <errorCategory target="system-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.SystemException"
+                           description="System exception" wrapped="false" />
+                <exception class="java.rmi.NoSuchObjectException"
+                           description="connection exception" wrapped="true" />
+                <exception class="java.lang.ClassCastException"
+                           description="connection exception" wrapped="true" />
+                <exception class="java.rmi.RemoteException" description="connection exception"
+                           wrapped="true" />
+                <exception class="java.rmi.NotBoundException" description="connection exception"
+                           wrapped="true" />
+                <exception class="java.net.MalformedURLException"
+                           description="connection exception" wrapped="true" />
+                <exception class="java.net.UnknownHostException"
+                           description="connection exception" wrapped="true" />
+                <exception class="java.rmi.MarshallException" description="connection exception"
+                           wrapped="true" />
+                <exception class="java.rmi.ConnectException" description="connection exception"
+                           wrapped="true" />
+                <exception class="java.net.ConnectException" description="connection exception"
+                           wrapped="true" />
+                <exception class="java.io.IOException" description="connection exception"
+                           wrapped="true" />
+                <exception class="org.apache.cxf.binding.soap.SoapFault"
+                           description="connection exception" wrapped="true" />
+                <exception class="javax.xml.stream.XMLStreamException"
+                           description="connection exception" wrapped="true" />
+                <exception
+                        class="org.apache.cxf.service.factory.ServiceConstructionException"
+                        description="connection exception" wrapped="true" />
+                <exception class="javax.wsdl.WSDLException" description="connection exception"
+                           wrapped="true" />
+                <exception class="javax.xml.ws.soap.SOAPFaultException"
+                           description="connection exception" wrapped="true" />
+                <exception class="javax.xml.ws.WebServiceException"
+                           description="connection exception" wrapped="true" />
+                <exception class="javax.xml.bind.MarshalException"
+                           description="connection exception" wrapped="true" />
+                <exception class="java.net.SocketTimeoutException"
+                           description="Socket Timeout Exception" wrapped="true" />
+                <exception class="java.net.SocketException" description="Socket Exception"
+                           wrapped="true" />
+            </errorCategory>
+            <errorCategory target="business-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.BusinessException"
+                           description="Business exception" wrapped="false" />
+            </errorCategory>
+            <errorCategory target="config-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.ConfigurationException"
+                           description="Configuration exception" wrapped="false" />
+            </errorCategory>
+            <errorCategory target="internal-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.InternalException"
+                           description="Internal exception" wrapped="false" />
+            </errorCategory>
+        </exceptionMapping>
+    </category>
+
+    <category name="KorekContentProviderService" fallbackException="config-error">
+        <throwable throwableName="system-error"
+                   className="com.ericsson.sscm.esb.exceptions.SystemException"
+                   blocking="true" retryCount="5" alarmCode="11101"/>
+        <throwable throwableName="system-error-noalarm"
+                   className="com.ericsson.sscm.esb.exceptions.SystemException"
+                   blocking="true" retryCount="100" />
+        <throwable throwableName="business-error"
+                   className="com.ericsson.sscm.esb.exceptions.BusinessException"
+                   blocking="true" retryCount="5"/>
+        <throwable throwableName="config-error"
+                   className="com.ericsson.sscm.esb.exceptions.ConfigurationException"
+                   retryCount="5"/>
+        <throwable throwableName="ignore-error"
+                   className="com.ericsson.sscm.esb.exceptions.IgnoreError" blocking="true"
+                   retryCount="5"/>
+
+
+        <errorCodeMapping>
+            <errorCategory target="system-error-noalarm">
+                <errorCode code="101" description="Subscription already exists"/>
+                <errorCode code="102" description="Subscription does not exist"/>
+                <errorCode code="103" description="Invalid service id"/>
+                <errorCode code="104" description="Invalid sub service id"/>
+                <errorCode code="105" description="Lnaguage id not supported for this service"/>
+            </errorCategory>
+            <errorCategory target="system-error">
+                <errorCode code="100" description="Content Provider Internal System Error"/>
+            </errorCategory>
+        </errorCodeMapping>
+
+        <exceptionMapping>
+            <errorCategory target="system-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.SystemException"
+                           description="System exception" wrapped="false"/>
+                <exception class="java.rmi.NoSuchObjectException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.lang.ClassCastException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.rmi.RemoteException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.rmi.NotBoundException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.net.MalformedURLException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.net.UnknownHostException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.rmi.MarshallException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.rmi.ConnectException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.net.ConnectException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="java.io.IOException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="org.apache.cxf.binding.soap.SoapFault"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.stream.XMLStreamException"
+                           description="connection exception" wrapped="true"/>
+                <exception
+                        class="org.apache.cxf.service.factory.ServiceConstructionException"
+                        description="connection exception" wrapped="true"/>
+                <exception class="javax.wsdl.WSDLException" description="connection exception"
+                           wrapped="true"/>
+                <exception class="javax.xml.ws.soap.SOAPFaultException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.ws.WebServiceException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="javax.xml.bind.MarshalException"
+                           description="connection exception" wrapped="true"/>
+                <exception class="java.net.SocketTimeoutException"
+                           description="Socket Timeout Exception" wrapped="true"/>
+                <exception class="java.net.SocketException" description="Socket Exception" wrapped="true"/>
+            </errorCategory>
+            <errorCategory target="business-error">
+                <exception class="com.ericsson.sscm.esb.exceptions.BusinessException"
+                           description="Business exception" wrapped="false"/>
+            </errorCategory>
+        </exceptionMapping>
+    </category>
+
+
+
+</exceptionMapping>

@@ -12,6 +12,7 @@
 
     <modules>
         <module>sscmkorektestoutbound</module>
+        <module>sscm-korek-test-features</module>
     </modules>
 
     <properties>

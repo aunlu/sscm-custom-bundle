@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="exceptionMapping">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="category">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="throwable" minOccurs="1" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:attribute name="throwableName" type="xs:string" use="required"/>
+                                        <xs:attribute name="className" type="xs:string" use="required"/>
+                                        <xs:attribute name="retryCount" type="xs:integer" use="optional"/>
+                                        <xs:attribute name="blocking" type="xs:boolean" use="optional"/>
+                                        <xs:attribute name="defaultErorCode" type="xs:string" use="optional"/>
+                                        <xs:attribute name="alarmCode" type="xs:long" use="optional"/>
+                                        <xs:attribute name="alarmEnabled" type="xs:boolean" use="optional"/>                                        
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="errorCodeMapping" minOccurs="0" maxOccurs="1">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="errorCategory" minOccurs="1" maxOccurs="unbounded">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="errorCode" minOccurs="1"
+                                                                    maxOccurs="unbounded">
+                                                            <xs:complexType>
+                                                                <xs:attribute name="code" type="xs:string"
+                                                                              use="required"/>
+                                                                <xs:attribute name="description" type="xs:string"
+                                                                              use="required"/>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="target" type="xs:string" use="required"/>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="exceptionMapping" minOccurs="0" maxOccurs="1">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="errorCategory" minOccurs="1" maxOccurs="unbounded">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="exception" minOccurs="1"
+                                                                    maxOccurs="unbounded">
+                                                            <xs:complexType>
+                                                                <xs:attribute name="class" type="xs:string"
+                                                                              use="required"/>
+                                                                <xs:attribute name="description" type="xs:string"
+                                                                              use="required"/>
+                                                                <xs:attribute name="wrapped" type="xs:boolean"
+                                                                              use="optional"/>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="target" type="xs:string" use="required"/>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="fallbackException" type="xs:string" use="optional"/>
+                            <xs:attribute name="name" type="xs:string" use="required"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name='sscm-korek'>
+
+    <feature name='sscm-korek' version='${project.version}' start-level='60'>
+        <configfile finalname="/etc/rules/rules-custom.drl" override="true">
+            mvn:com.ericsson.sscm.esb/sscm-korek-features/${project.version}/drl/rules-custom
+        </configfile>
+        <configfile finalname="/etc/rules/post-custom.drl" override="true">
+            mvn:com.ericsson.sscm.esb/sscm-korek-features/${project.version}/drl/post-custom
+        </configfile>
+        <configfile finalname="/etc/rules/transform-custom.drl" override="true">
+            mvn:com.ericsson.sscm.esb/sscm-korek-features/${project.version}/drl/transform-custom
+        </configfile>
+        <configfile finalname="/etc/com.ericsson.sscm.esb.korek.cfg" override="true">
+            mvn:com.ericsson.sscm.esb/sscm-korek-features/${project.version}/cfg/com.ericsson.sscm.esb.korek
+        </configfile>
+        <configfile finalname="/etc/com.ericsson.sscm.esb.imei.cfg" override="true">
+            mvn:com.ericsson.sscm.esb/sscm-korek-features/${project.version}/cfg/com.ericsson.sscm.esb.imei
+        </configfile>
+        <configfile finalname="/etc/com.ericsson.sscm.esb.korek.inbound.cfg" override="true">
+            mvn:com.ericsson.sscm.esb/sscm-korek-features/${project.version}/cfg/com.ericsson.sscm.esb.korek.inbound
+        </configfile>
+        <configfile finalname="/etc/error/korek-exception-mapping.xml" override="true">
+            mvn:com.ericsson.sscm.esb/sscm-korek-features/${project.version}/xml/korek-exception-mapping
+        </configfile>
+        <configfile finalname="/etc/com.ericsson.sscm.esb.korek.jdbc.cfg" override="true">
+            mvn:com.ericsson.sscm.esb/sscm-korek-features/${project.version}/cfg/com.ericsson.sscm.esb.korek.jdbc
+        </configfile>
+
+
+        <feature version='${camel-version}'>camel-sql</feature>
+
+        <bundle>mvn:commons-dbcp/commons-dbcp/1.4</bundle>
+
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-outbound/${project.version}</bundle>
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-cellid/${project.version}</bundle>
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-frp-outbound/${project.version}</bundle>
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-imei-list/${project.version}</bundle>
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-inbound/${project.version}</bundle>
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-oracle/${project.version}</bundle>
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-jdbc/${project.version}</bundle>
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-ati/${project.version}</bundle>
+        <bundle>mvn:com.ericsson.sscm.esb/sscm-korek-cp/${project.version}</bundle>
+
+
+    </feature>
+
+</features>
