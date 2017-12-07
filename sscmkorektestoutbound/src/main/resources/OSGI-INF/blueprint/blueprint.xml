@@ -19,7 +19,7 @@
 	<bean id="loggingInInterceptor" class="com.ericsson.sscm.esb.common.util.LoggingInInterceptor"/>
 	<bean id="loggingOutInterceptor" class="com.ericsson.sscm.esb.common.util.LoggingOutInterceptor"/>
 
-	<jaxws:client id="testWs_endpoint" address="${frpWsUri}"
+	<jaxws:client id="testWs_endpoint" address="${testWsUri}"
 				  serviceClass="com.ericsson.test.ws.TestWs">
 		<jaxws:inInterceptors>
 			<ref component-id="loggingInInterceptor"/>

@@ -10,9 +10,6 @@ import com.ericsson.sscm.esb.outbound.SscmOutboundService;
 @NodeIdentifier(value = "CustomKorekTestOutboundService")
 public interface CustomKorekTestOutboundService extends SscmOutboundService {
 
-    String ATTRIBUTE_CAMPAIGN_ID = "CAMPAIGN_ID";
-    String ATTRIBUTE_OFFER_ID = "OFFER_ID";
-
     @Operation(value = "setSubscriberData")
     public NodeResponse setSubscriberData(@In(param = "msisdn") String msisdn,
                                           @In(param = "transactionId") String transactionId,
