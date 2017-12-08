@@ -50,7 +50,6 @@ public class CustomKorekTestOutboundServiceImpl implements CustomKorekTestOutbou
         try {
             SetSubscriberDataResponse response = testServiceProxy.setSubscriberData(request);
             NodeResponse nodeResponse = prepareResponse(response.getTestResponse());
-            nodeResponse.setOriginalMessage(response);
             return nodeResponse;
         } catch (Exception e) {
             logger.error("Exception occured during setSubscriberData call" + e);
@@ -73,7 +72,6 @@ public class CustomKorekTestOutboundServiceImpl implements CustomKorekTestOutbou
         try {
             ReadSubscriberDataResponse response = testServiceProxy.readSubscriberData(request);
             NodeResponse nodeResponse = prepareResponse(response);
-            nodeResponse.setOriginalMessage(response);
             return nodeResponse;
         } catch (Exception e) {
             logger.error("Exception occured during setSubscriberData call" + e);

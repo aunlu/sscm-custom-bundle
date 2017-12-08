@@ -14,13 +14,10 @@
 		<property name="testServiceProxy" ref="testWs_endpoint" />
 	</bean>
 	
-	<service ref="sscmCustomKorekTestOutboundServiceImpl" interface="com.ericsson.sscm.esb.outbound.SscmOutboundService" />
-
 	<bean id="loggingInInterceptor" class="com.ericsson.sscm.esb.common.util.LoggingInInterceptor"/>
 	<bean id="loggingOutInterceptor" class="com.ericsson.sscm.esb.common.util.LoggingOutInterceptor"/>
 
-	<jaxws:client id="testWs_endpoint" address="${testWsUri}"
-				  serviceClass="com.ericsson.test.ws.TestWs">
+	<jaxws:client id="testWs_endpoint" address="${testKorekWsUri}" serviceClass="com.ericsson.test.ws.TestWs">
 		<jaxws:inInterceptors>
 			<ref component-id="loggingInInterceptor"/>
 		</jaxws:inInterceptors>

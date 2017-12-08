@@ -11,25 +11,13 @@
     <name>sscm-custom-bundle</name>
 
     <modules>
-        <module>sscmkorektestoutbound</module>
-        <module>sscm-korek-test-features</module>
-        <module>sscm-custom-repo</module>
+        <module>sscm-korek-test-outbound</module>
     </modules>
 
     <properties>
         <esb.common.version>4.1.12</esb.common.version>
         <camel-version>2.12.0.redhat-610379</camel-version>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>15.0</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -101,26 +89,6 @@
         </pluginManagement>
 
     </build>
-
-    <!--<distributionManagement>-->
-    <!--<repository>-->
-    <!--<id>releases</id>-->
-    <!--<name>armseka-releases</name>-->
-    <!--<url>https://arm.epk.ericsson.se/artifactory/proj-bics-cac-tr-release-local/</url>-->
-    <!--</repository>-->
-
-    <!--<snapshotRepository>-->
-    <!--<id>snapshots</id>-->
-    <!--<name>armseka-staging</name>-->
-    <!--<url>https://arm.epk.ericsson.se/artifactory/proj-bics-cac-tr-dev-local/</url>-->
-    <!--</snapshotRepository>-->
-    <!--</distributionManagement>-->
-
-    <scm>
-        <connection>scm:git:https://github.com/aunlu/sscm-custom-bundle.git
-        </connection>
-        <tag>HEAD</tag>
-    </scm>
 
 </project>
 

@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sscm-korek-test-outbound</artifactId>
-    <packaging>bundle</packaging>
 
     <build>
         <defaultGoal>install</defaultGoal>
@@ -29,18 +28,6 @@
                         </Export-Package>
                         <Import-Package>
                             !*,
-                            com.ericsson.sscm.esb.common.util,
-                            com.ericsson.sscm.esb.custom.outbound,
-                            com.ericsson.sscm.esb.model.annotations,
-                            com.ericsson.sscm.esb.model.data,
-                            com.ericsson.sscm.esb.outbound,
-                            javax.jws,
-                            javax.jws.soap,
-                            javax.xml.bind,
-                            javax.xml.bind.annotation,
-                            javax.xml.namespace,
-                            javax.xml.ws,
-                            org.osgi.service.blueprint,
                             org.slf4j
                         </Import-Package>
                     </instructions>
