@@ -76,8 +76,8 @@ public class CustomKorekTestOutboundServiceImpl implements CustomKorekTestOutbou
             nodeResponse.setOriginalMessage(response);
             return nodeResponse;
         } catch (Exception e) {
-            logger.error("Exception occured during setSubscriberData call" + e);
-            throw new RuntimeException("Exception occured during setSubscriberData call", e);
+            logger.error("Exception occured during readSubscriberData call" + e);
+            throw new RuntimeException("Exception occured during readSubscriberData call", e);
         }
 
     }

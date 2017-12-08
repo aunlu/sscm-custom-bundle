@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:jaxws="http://cxf.apache.org/blueprint/jaxws"
+	xmlns:camelcxf="http://camel.apache.org/schema/blueprint/cxf"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0">
+
+	<cm:property-placeholder persistent-id="com.ericsson.sscm.esb.korek.test" update-strategy="none">
+		<cm:default-properties>
+			<cm:property name="testWsUri" value="http://localhost:19095/test-wsPort" />
+		</cm:default-properties>
+	</cm:property-placeholder>
+
+	<bean id="sscmCustomKorekTestOutboundServiceImpl"
+		class="com.ericsson.sscm.esb.custom.outbound.impl.CustomKorekTestOutboundServiceImpl">
+		<property name="testServiceProxy" ref="testWs_endpoint" />
+	</bean>
+	
+	<service id="testService" ref="sscmCustomKorekTestOutboundServiceImpl" interface="com.ericsson.sscm.esb.custom.outbound.CustomKorekTestOutboundService" />
+
+	<camelcxf:cxfEndpoint id="custom_test_endpoint"
+						  address="${testWsUri}" endpointName="s:test-wsPort" serviceName="s:TestWsService"
+						  wsdlURL="META-INF/wsdl/TestWs.wsdl" serviceClass="com.ericsson.test.ws.TestWs"
+						  xmlns:s="http://ws.test.ericsson.com">
+	</camelcxf:cxfEndpoint>
+
+	<jaxws:client id="testWs_endpoint" address="${testWsUri}"
+				  serviceClass="com.ericsson.test.ws.TestWs">
+	</jaxws:client>
+
+	<bean id="testServiceConsumer"
+		  class="com.ericsson.sscm.esb.test.TestServiceConsumer">
+		<property name="service" ref="sscmCustomKorekTestOutboundServiceImpl" />
+	</bean>
+
+	<camelContext trace="false" id="subscriptionFlowContext"
+				  xmlns="http://camel.apache.org/schema/blueprint">
+
+		<route id="testws-route">
+			<from uri="cxf:bean:custom_test_endpoint?dataFormat=POJO" />
+			<to uri="mock:testServer" />
+		</route>
+
+		<route id="testws-route2">
+			<from uri="direct:start"/>
+			<to uri="bean:testServiceConsumer?method=readSubscriberData"/>
+		</route>
+	</camelContext>
+</blueprint>
