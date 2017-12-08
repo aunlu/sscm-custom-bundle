@@ -1,26 +1,18 @@
 package com.ericsson.sscm.esb.test;
 
-import com.ericsson.sscm.esb.constants.CommonConstants;
-import com.ericsson.sscm.esb.custom.outbound.CustomKorekTestOutboundService;
-import com.ericsson.sscm.esb.model.data.Attribute;
 import com.ericsson.sscm.esb.model.data.Request;
 import com.ericsson.test.ws.ReadSubscriberData;
 import com.ericsson.test.ws.ReadSubscriberDataResponse;
 import org.apache.camel.Exchange;
 import org.apache.camel.Expression;
 import org.apache.camel.Predicate;
-import org.apache.camel.component.mock.AssertionClause;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.model.ProcessorDefinition;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
 import org.apache.cxf.message.MessageContentsList;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Created by eilkakk on 2/20/14.
- */
 public class CustomBundleTest extends CamelBlueprintTestSupport {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

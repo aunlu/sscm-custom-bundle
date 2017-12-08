@@ -19,7 +19,6 @@ public class TestServiceConsumer {
     }
 
     public void readSubscriberData(Exchange e) {
-        log.info("Exchange: " , e);
         Request body = (Request) e.getIn().getBody();
         service.readSubscriberData((String)(body.getParam("msisdn")), (String)(body.getParam("transactionId")));
     }
