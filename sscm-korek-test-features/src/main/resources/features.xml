@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name='sscm-korek'>
 
-    <feature name='sscm-custom-bundle' version='${project.version}' start-level='60'>
+    <feature name='sscm-custom-feature' version='${project.version}' start-level='60'>
         <!--<configfile finalname="/etc/rules/rules-custom.drl" override="true">-->
             <!--mvn:com.ericsson.sscm.esb/sscm-korek-test-features/${project.version}/drl/rules-custom-->
         <!--</configfile>-->

@@ -56,7 +56,6 @@ public class CustomBundleTest extends CamelBlueprintTestSupport {
         });
 
         Request request = new Request();
-        request.setFlowName("subscriberCreate");
         request.getNodeRequest().add("msisdn", "123456789");
         request.getNodeRequest().add("transactionId", "98765");
         // send a message
