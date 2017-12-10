@@ -17,9 +17,16 @@
     <properties>
         <esb.common.version>4.1.12</esb.common.version>
         <camel-version>2.12.0.redhat-610379</camel-version>
+        <cxf-version>2.7.0.redhat-610379</cxf-version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-all</artifactId>
+            <version>4.0</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.ericsson.sscm.esb</groupId>
             <artifactId>sscm-common-api</artifactId>
@@ -35,10 +42,62 @@
             <artifactId>camel-cxf</artifactId>
             <version>${camel-version}</version>
         </dependency>
+        <!--LOG DEPENDENCIES-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.6.6</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <!--TEST DEPENDENCIES-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-blueprint</artifactId>
+            <version>${camel-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-http</artifactId>
+            <version>${camel-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+            <version>4.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>${cxf-version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

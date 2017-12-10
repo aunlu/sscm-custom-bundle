@@ -42,10 +42,6 @@ public class CustomKorekTestOutboundServiceImpl implements CustomKorekTestOutbou
             throw new UnsupportedOperationException("Parameters cannot be null. " + msisdn + "|" + transactionId + "|" + param1);
         }
         SetSubscriberData request = new SetSubscriberData();
-        request.setMsisdn(msisdn);
-        request.setTransactionId(transactionId);
-        request.setParam1(param1);
-        request.setParam2(param2);
 
         try {
             SetSubscriberDataResponse response = testServiceProxy.setSubscriberData(request);
@@ -66,8 +62,6 @@ public class CustomKorekTestOutboundServiceImpl implements CustomKorekTestOutbou
         }
 
         ReadSubscriberData request = new ReadSubscriberData();
-        request.setMsisdn(msisdn);
-        request.setTransactionId(transactionId);
 
         try {
             ReadSubscriberDataResponse response = testServiceProxy.readSubscriberData(request);
