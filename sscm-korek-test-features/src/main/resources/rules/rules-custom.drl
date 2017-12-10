@@ -2,13 +2,6 @@ package com.ericsson.sscm.esb.rules;
 
 import com.ericsson.sscm.esb.model.data.Request;
 import com.ericsson.sscm.esb.model.data.Attribute;
-import com.ericsson.sscm.esb.model.data.AbstractInOut;
-import com.ericsson.sscm.esb.constants.CommonConstants;
-import com.ericsson.sscm.esb.model.data.StatusValue;
-
-import com.ericsson.sscm.esb.model.data.Response;
-import com.ericsson.sscm.esb.model.data.NodeResponse;
-import com.ericsson.sscm.esb.model.data.Criteria;
 
 global org.slf4j.Logger logger;
 

@@ -30,7 +30,7 @@ import java.math.BigInteger;
 
 global org.slf4j.Logger logger;
 
-rule "transform_updateServiceClass"
+rule "transform_CustomKorekTestOutboundService"
     when
         $request : Request( nextNodeIdentifier == "CustomKorekTestOutboundService",
                             nextOperation == "setSubscriberData" ,
@@ -46,7 +46,7 @@ rule "transform_updateServiceClass"
         }
         $request.getNodeRequest().add("param1",param1);
 
-        param2 = $request.getNodeRequest().getAttributeByName("PARAM_2");
+        String param2 = $request.getNodeRequest().getAttributeByName("PARAM_2");
         if (param2 != null) {
             $request.getNodeRequest().add("param2",param2.getValue());
         }
